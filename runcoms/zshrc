@@ -11,3 +11,48 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+PATH='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+if [ -f $(brew --prefix)/bin/virtualenvwrapper.sh ]; then
+  . $(brew --prefix)/bin/virtualenvwrapper.sh
+fi
+
+# Golang
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
+
+#My Alias
+alias conaff="cd ~/Dropbox/Projetos/toptal/consumeraffairs; workon conaff"
+
+# Djnago / Python alias
+alias py='python'
+alias ipy='ipython'
+alias py3='python3'
+alias ipy3='ipython3'
+
+alias wo='workon'
+alias pf='pip freeze | sort'
+alias pi='pip install'
+alias pun='pip uninstall'
+
+alias m="python manage.py"
+alias msu="python manage.py show_urls"
+alias mr="python manage.py runserver"
+alias ms="python manage.py shell"
+alias mrp="python manage.py runserver_plus"
+alias msp="python manage.py shell_plus"
+alias sm="python manage.py schemamigration"
+alias mmm="python manage.py makemigration"
+alias mm="python manage.py migrate"
+alias md="python manage.py dumpdata"
+alias ml="python manage.py loaddata"
+alias mt="python manage.py test"
+
+# Brunch
+alias bb="cd styleguide/frontend; brunch b; cd ../.."
+
+# Show all alias related python
+pya() { alias | grep 'python\|workon\|pip' | \
+        sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g";}
