@@ -25,6 +25,7 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 
 #My Alias
 alias conaff="cd ~/Dropbox/Projetos/toptal/consumeraffairs; workon conaff"
+alias vim=nvim
 
 # Djnago / Python alias
 alias py='python'
@@ -50,9 +51,31 @@ alias md="python manage.py dumpdata"
 alias ml="python manage.py loaddata"
 alias mt="python manage.py test"
 
+alias psleep="pmset -g assertions"
+
+#alias ssh=~/bin/ssh-host-color
+
 # Brunch
 alias bb="cd styleguide/frontend; brunch b; cd ../.."
 
 # Show all alias related python
 pya() { alias | grep 'python\|workon\|pip' | \
         sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g";}
+
+init(){
+    mysql.server start
+}
+
+cover () { 
+    t="/tmp/go-cover.$$.tmp"
+    go test -coverprofile=$t $@ && go tool cover -html=$t && unlink $t
+}
+
+export PATH="/Users/wsantos/bin:/usr/local/sbin:$PATH"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+alias dm="docker-machine"
+eval "$(docker-machine env xd)"
