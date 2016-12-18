@@ -12,9 +12,9 @@ fi
 
 # Customize to your needs...
 PATH='/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
+#if [ -f $(brew --prefix)/etc/bash_completion ]; then
+#  . $(brew --prefix)/etc/bash_completion
+#fi
 if [ -f $(brew --prefix)/bin/virtualenvwrapper.sh ]; then
   . $(brew --prefix)/bin/virtualenvwrapper.sh
 fi
@@ -25,7 +25,6 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 
 #My Alias
 alias conaff="cd ~/Dropbox/Projetos/toptal/consumeraffairs; workon conaff"
-alias vim=nvim
 
 # Djnago / Python alias
 alias py='python'
@@ -66,6 +65,10 @@ init(){
     mysql.server start
 }
 
+function perf {
+      curl -o /dev/null -s -w "%{time_connect} + %{time_starttransfer} = %{time_total}\n" "$1"
+}
+
 cover () { 
     t="/tmp/go-cover.$$.tmp"
     go test -coverprofile=$t $@ && go tool cover -html=$t && unlink $t
@@ -74,8 +77,8 @@ cover () {
 export PATH="/Users/wsantos/bin:/usr/local/sbin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias ca_terragrunt="AWS_ACCESS_KEY_ID='AKIAIOI7WXFZKKIBLWFQ' AWS_SECRET_ACCESS_KEY='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' terragrunt"
 
 
-alias dm="docker-machine"
-eval "$(docker-machine env xd)"
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
